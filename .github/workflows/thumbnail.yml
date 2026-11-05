@@ -1,0 +1,42 @@
+name: Poner miniatura
+
+on:
+  workflow_dispatch:
+    inputs:
+      video_id:
+        description: "ID del video en YouTube"
+        required: true
+      episodio:
+        description: "ID del episodio (usa su miniatura.json/imagen)"
+        required: true
+
+jobs:
+  miniatura:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -q -r requirements.txt
+      - uses: actions/cache@v4
+        with:
+          path: .cache
+          key: biblia-cache-v1-thumb-${{ github.run_id }}
+          restore-keys: biblia-cache-v1-
+      - env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: |
+          python - <<'PY'
+          import sys
+          from pipeline import thumbnail, youtube
+          from pipeline.common import EPISODES, load_json
+          ep = load_json(EPISODES / "${{ inputs.episodio }}" / "episode.json")
+          thumbnail.make(ep["largo"]["miniatura"], "/tmp/miniatura.jpg")
+          ok = youtube.set_thumbnail("${{ inputs.video_id }}", "/tmp/miniatura.jpg")
+          print("miniatura puesta" if ok else "NO se pudo poner la miniatura")
+          sys.exit(0 if ok else 1)
+          PY
