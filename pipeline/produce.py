@@ -4,6 +4,7 @@ Uso: python -m pipeline.produce [--episodio ID] [--sin-subir]
 """
 import argparse
 import datetime as dt
+import shutil
 import traceback
 
 from . import render, thumbnail, validate, youtube
@@ -70,6 +71,12 @@ def produce(ep_path, cfg, upload):
         shorts.append((s, mp4, c, d))
         res.setdefault("shorts", []).append({"duracion_s": round(d), "archivo": mp4.name,
                                              "imagenes": [x.get("titulo") for x in c]})
+    rev = ep_path.parent / "revision"
+    rev.mkdir(exist_ok=True)
+    shutil.copy(out / "work_largo" / "hoja.jpg", rev / "largo.jpg")
+    for i in range(len(shorts)):
+        shutil.copy(out / f"work_short{i + 1}" / "hoja.jpg", rev / f"short{i + 1}.jpg")
+    shutil.copy(thumb, rev / "miniatura.jpg")
     if any(d > 178 for *_, d in shorts):
         raise ValueError("Un Short pasa de 3 minutos")
 

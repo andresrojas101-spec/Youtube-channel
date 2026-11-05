@@ -9,7 +9,7 @@ Se puede añadir "respaldo": {...otra especificación...}.
 """
 import hashlib
 import json
-import random
+import time
 import re
 import urllib.parse
 from pathlib import Path
@@ -48,6 +48,8 @@ def _commons_pages(params):
 
 def _usable(page):
     ii = (page.get("imageinfo") or [{}])[0]
+    if re.search(r"\bby Nadar\b|portrait|photograph", page.get("title", ""), re.I):
+        return None
     if ii.get("mime") not in ("image/jpeg", "image/png", "image/tiff"):
         return None
     if ii.get("width", 0) < 900 or ii.get("height", 0) < 600:
@@ -65,8 +67,8 @@ def _usable(page):
     }
 
 
-def _download(url, dest):
-    r = S.get(url, timeout=120)
+def _download(url, dest, timeout=120):
+    r = S.get(url, timeout=timeout)
     r.raise_for_status()
     dest.write_bytes(r.content)
     Image.open(dest).verify()
@@ -89,13 +91,27 @@ def _from_commons(spec, dest):
 
 
 def _generate(spec, dest):
+    """Pollinations (gratis, sin clave). Reintenta porque limita la frecuencia de pedidos."""
     prompt = spec["generar"] + ESTILO
-    seed = spec.get("semilla", random.randint(1, 10**6))
+    seed = spec.get("semilla", int(_key(spec)[:6], 16))
     url = ("https://image.pollinations.ai/prompt/" + urllib.parse.quote(prompt) +
            f"?width=1920&height=1080&nologo=true&seed={seed}")
-    _download(url, dest)
-    return {"titulo": "Ilustración generada", "autor": "IA", "licencia": "generada",
-            "fuente": None, "generada": True, "prompt": spec["generar"]}
+    last = None
+    for attempt in range(5):
+        try:
+            _download(url, dest, timeout=180)
+            w, h = Image.open(dest).size
+            if w < 800 or h < 450:
+                raise ValueError(f"imagen generada muy pequeña ({w}x{h})")
+            time.sleep(6)  # respetar el límite de pedidos
+            return {"titulo": "Ilustración generada", "autor": "IA", "licencia": "generada",
+                    "fuente": None, "generada": True, "prompt": spec["generar"]}
+        except Exception as e:  # noqa: BLE001
+            last = e
+            wait = 15 * (attempt + 1)
+            log(f"generación falló (intento {attempt + 1}/5), reintento en {wait}s:", str(e)[:150])
+            time.sleep(wait)
+    raise RuntimeError(f"no se pudo generar la imagen: {last}")
 
 
 def resolve(spec):
@@ -121,10 +137,6 @@ def resolve(spec):
         if "buscar" in spec:
             log("búsqueda falló, generando:", e)
             return resolve({"generar": spec["buscar"]})
-        if "generar" in spec:
-            log("generación falló, usando un grabado de Doré:", e)
-            return resolve({"buscar": "Gustave Doré Bible illustration",
-                            "n": int(_key(spec), 16) % 12})
         raise
     meta.write_text(json.dumps(credit, ensure_ascii=False))
     log("imagen ok:", credit.get("titulo"))

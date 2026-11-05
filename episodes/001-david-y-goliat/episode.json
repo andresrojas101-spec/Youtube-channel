@@ -1,6 +1,6 @@
 {
   "id": "001-david-y-goliat",
-  "status": "subido",
+  "status": "revision",
   "historia": "David y Goliat",
   "referencias": [
     "1 Samuel 17:1-58",
@@ -115,11 +115,7 @@
       {
         "texto": "Goliat se paró frente a las filas de Israel y gritó: ¿Para qué salen a pelear? Escojan a un hombre que venga contra mí. Si él me vence, nosotros seremos sus siervos. Pero si yo lo venzo, ustedes serán nuestros siervos.",
         "imagen": {
-          "buscar": "Gustave Doré Philistines",
-          "n": 0,
-          "respaldo": {
-            "generar": "ancient Philistine army with spears and shields on a hill"
-          }
+          "generar": "ancient Philistine army with spears, round shields and feathered helmets lined up on a hill"
         }
       },
       {
@@ -143,7 +139,7 @@
       {
         "texto": "Mientras tanto, en Belén, vivía un anciano llamado Isaí. Tenía ocho hijos. Los tres mayores, Eliab, Abinadab y Sama, estaban en el ejército de Saúl. El menor, David, cuidaba las ovejas de su padre.",
         "imagen": {
-          "buscar": "Tissot young David shepherd",
+          "buscar": "Tissot 1 Samuel 16",
           "n": 0,
           "respaldo": {
             "generar": "young shepherd David with his sheep on the hills of Bethlehem"
@@ -165,11 +161,7 @@
       {
         "texto": "Mientras hablaba con ellos, Goliat salió otra vez y repitió las mismas palabras. Y David lo escuchó. Vio a los soldados de Israel huir de su presencia, llenos de miedo.",
         "imagen": {
-          "buscar": "Doré David and Goliath engraving",
-          "n": 1,
-          "respaldo": {
-            "generar": "the giant Goliath falling to the ground struck by a stone"
-          }
+          "generar": "the giant Goliath in bronze armor standing alone in a valley, laughing at the army of Israel"
         }
       },
       {
@@ -181,7 +173,7 @@
       {
         "texto": "Pero a David no le llamó la atención la recompensa, sino la ofensa. Preguntó: ¿Quién es este filisteo incircunciso, para que desafíe a los escuadrones del Dios viviente?",
         "imagen": {
-          "buscar": "Tissot young David shepherd",
+          "buscar": "Tissot 1 Samuel 16",
           "n": 0,
           "respaldo": {
             "generar": "young shepherd David with his sheep on the hills of Bethlehem"
@@ -341,7 +333,7 @@
       {
         "texto": "Ese muchacho que nadie conocía, que su propio hermano despreció y que el rey creyó demasiado joven, años después sería el rey David, el rey más recordado de toda la historia de Israel.",
         "imagen": {
-          "buscar": "Tissot young David shepherd",
+          "buscar": "Tissot 1 Samuel 16",
           "n": 0,
           "respaldo": {
             "generar": "young shepherd David with his sheep on the hills of Bethlehem"
@@ -357,7 +349,7 @@
       {
         "texto": "Y antes de enfrentar al gigante delante de todos, David había aprendido a ser fiel en lo pequeño, cuidando unas pocas ovejas en el campo, donde nadie lo veía. Allí se preparó para el día más importante de su vida.",
         "imagen": {
-          "buscar": "Tissot young David shepherd",
+          "buscar": "Tissot 1 Samuel 16",
           "n": 0,
           "respaldo": {
             "generar": "young shepherd David with his sheep on the hills of Bethlehem"
@@ -367,11 +359,7 @@
       {
         "texto": "Tal vez hoy tú también estás frente a un gigante. Un problema que parece demasiado grande, que te desafía cada mañana y cada tarde. Esta historia nos recuerda que la batalla no depende del tamaño del gigante.",
         "imagen": {
-          "buscar": "Doré David and Goliath engraving",
-          "n": 1,
-          "respaldo": {
-            "generar": "the giant Goliath falling to the ground struck by a stone"
-          }
+          "generar": "the giant Goliath in bronze armor standing alone in a valley, laughing at the army of Israel"
         }
       },
       {
@@ -480,7 +468,7 @@
         {
           "texto": "Pero David no retrocedió. Le respondió: Tú vienes a mí con espada y lanza y escudo;",
           "imagen": {
-            "buscar": "Tissot young David shepherd",
+            "buscar": "Tissot 1 Samuel 16",
             "n": 0,
             "respaldo": {
               "generar": "young shepherd David with his sheep on the hills of Bethlehem"
@@ -546,11 +534,7 @@
         {
           "texto": "Pero la antigua traducción griega y uno de los rollos del mar Muerto dicen cuatro codos y un palmo: unos dos metros.",
           "imagen": {
-            "buscar": "Gustave Doré Philistines",
-            "n": 0,
-            "respaldo": {
-              "generar": "ancient Philistine army with spears and shields on a hill"
-            }
+            "generar": "ancient Philistine army with spears, round shields and feathered helmets lined up on a hill"
           }
         },
         {
@@ -590,125 +574,12 @@
       null
     ]
   },
-  "resultado": {
-    "producido_en": "2026-11-05T21:46:57+00:00",
-    "largo": {
-      "duracion_s": 557,
-      "archivo": "largo.mp4",
-      "imagenes": [
-        "Ilustración generada",
-        "File:071A.David Slays Goliath.jpg",
-        "File:072.Saul Attempts to Kill David.jpg",
-        "File:Valley of Elah.jpg",
-        "Ilustración generada",
-        "File:Tissot Drawing 264 The defiance of Goliath 1 Samuel 17 10 for Brunoff 252 Le défi de Goliath.jpg",
-        "Ilustración generada",
-        "File:Tissot Drawing 264 The defiance of Goliath 1 Samuel 17 10 for Brunoff 252 Le défi de Goliath.jpg",
-        "Ilustración generada",
-        "File:061.Samson Destroys the Philistines with an Ass' Jawbone.jpg",
-        "Ilustración generada",
-        "Ilustración generada",
-        "Ilustración generada",
-        "File:Gustave Doré - The Holy Bible - Plate I, The Deluge.jpg",
-        "Ilustración generada",
-        "Ilustración generada",
-        "File:Dore jonah.jpg",
-        "Ilustración generada",
-        "Ilustración generada",
-        "File:Gustave Doré - The Holy Bible - Plate I, The Deluge.jpg",
-        "File:Gustave Doré - The Holy Bible - Plate I, The Deluge.jpg",
-        "File:072.Saul Attempts to Kill David.jpg",
-        "File:072.Saul Attempts to Kill David.jpg",
-        "Ilustración generada",
-        "File:Dore jonah.jpg",
-        "Ilustración generada",
-        "Ilustración generada",
-        "File:Gustave Doré by Nadar - Getty Museum.jpg",
-        "File:Gustave Doré by Nadar - Getty Museum.jpg",
-        "Ilustración generada",
-        "File:071A.David Slays Goliath.jpg",
-        "File:Tissot Drawing 264 The defiance of Goliath 1 Samuel 17 10 for Brunoff 252 Le défi de Goliath.jpg",
-        "File:Tissot Drawing 267 David slings the stone 1 Samuel 17 49 for Brunoff 255 David lance sa fronde.jpg",
-        "Ilustración generada",
-        "File:Gustave Doré - The Holy Bible - Plate CXLI, The Judas Kiss (unadjusted).png",
-        "File:Tissot Drawing 267 David slings the stone 1 Samuel 17 49 for Brunoff 255 David lance sa fronde.jpg",
-        "Ilustración generada",
-        "File:Dore jonah.jpg",
-        "File:Dore Bible Sermon on the Mount.jpg",
-        "Ilustración generada",
-        "Ilustración generada",
-        "Ilustración generada",
-        "Ilustración generada",
-        "Ilustración generada",
-        "Ilustración generada"
-      ],
-      "youtube": {
-        "id": "swcIGTS9IXo",
-        "privacidad_pedida": "unlisted",
-        "privacidad_resultante": "unlisted",
-        "publicar_en": null,
-        "url": "https://youtu.be/swcIGTS9IXo",
-        "miniatura": false
-      }
-    },
+  "piloto_v1": {
+    "largo": "https://youtu.be/swcIGTS9IXo",
     "shorts": [
-      {
-        "duracion_s": 37,
-        "archivo": "short1.mp4",
-        "imagenes": [
-          "File:Tissot Drawing 267 David slings the stone 1 Samuel 17 49 for Brunoff 255 David lance sa fronde.jpg",
-          "Ilustración generada",
-          "Ilustración generada",
-          "Ilustración generada",
-          "Ilustración generada",
-          "File:071A.David Slays Goliath.jpg"
-        ],
-        "youtube": {
-          "id": "NE3h_iJA8Bs",
-          "privacidad_pedida": "unlisted",
-          "privacidad_resultante": "unlisted",
-          "publicar_en": null,
-          "url": "https://youtu.be/NE3h_iJA8Bs"
-        }
-      },
-      {
-        "duracion_s": 30,
-        "archivo": "short2.mp4",
-        "imagenes": [
-          "File:Tissot Drawing 264 The defiance of Goliath 1 Samuel 17 10 for Brunoff 252 Le défi de Goliath.jpg",
-          "Ilustración generada",
-          "Ilustración generada",
-          "Ilustración generada",
-          "Ilustración generada",
-          "File:071A.David Slays Goliath.jpg"
-        ],
-        "youtube": {
-          "id": "KjS4U9nWNOc",
-          "privacidad_pedida": "unlisted",
-          "privacidad_resultante": "unlisted",
-          "publicar_en": null,
-          "url": "https://youtu.be/KjS4U9nWNOc"
-        }
-      },
-      {
-        "duracion_s": 30,
-        "archivo": "short3.mp4",
-        "imagenes": [
-          "File:Tissot Drawing 264 The defiance of Goliath 1 Samuel 17 10 for Brunoff 252 Le défi de Goliath.jpg",
-          "Ilustración generada",
-          "File:061.Samson Destroys the Philistines with an Ass' Jawbone.jpg",
-          "File:Tissot Drawing 264 The defiance of Goliath 1 Samuel 17 10 for Brunoff 252 Le défi de Goliath.jpg",
-          "Ilustración generada",
-          "File:071A.David Slays Goliath.jpg"
-        ],
-        "youtube": {
-          "id": "mCMJfKpR1Bg",
-          "privacidad_pedida": "unlisted",
-          "privacidad_resultante": "unlisted",
-          "publicar_en": null,
-          "url": "https://youtu.be/mCMJfKpR1Bg"
-        }
-      }
+      "https://youtu.be/NE3h_iJA8Bs",
+      "https://youtu.be/KjS4U9nWNOc",
+      "https://youtu.be/mCMJfKpR1Bg"
     ]
   }
 }

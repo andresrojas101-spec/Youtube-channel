@@ -119,12 +119,20 @@ def build(scenes, fmt, work, cfg, out_mp4):
     work.mkdir(parents=True, exist_ok=True)
     n = len(scenes)
     segs, wavs, credits, clips, timeline = [], [], [], [], []
+    last_good = None
     t0 = 0.0
     for i, sc in enumerate(scenes):
         wav = tts.synth(sc["texto"], work / f"v{i:03d}.wav", cfg["voz"])
         ad = duration(wav)
         seg = LEAD + ad + TAIL
-        img, credit = images.resolve(sc["imagen"])
+        try:
+            img, credit = images.resolve(sc["imagen"])
+            last_good = (img, credit)
+        except Exception as e:  # noqa: BLE001 - nunca poner una imagen ajena a la historia
+            if not last_good:
+                raise
+            log(f"escena {i + 1}: imagen falló ({str(e)[:120]}); repito la anterior")
+            img, credit = last_good[0], {**last_good[1], "repetida": True}
         credits.append(credit)
         length = seg + (XF if i < n - 1 else 0)
         motion = sc.get("movimiento") or MOTIONS[i % len(MOTIONS)]
@@ -174,5 +182,29 @@ def build(scenes, fmt, work, cfg, out_mp4):
          "-map", "[v]", "-map", "[a]", "-c:v", "libx264", "-preset", "fast", "-crf", "20",
          "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart",
          "-t", f"{total:.3f}", str(out_mp4)])
+    contact_sheet(clips, work / "hoja.jpg", fmt)
     log(f"{fmt} listo: {out_mp4} ({total:.0f}s)")
     return Path(out_mp4), credits, total
+
+
+def contact_sheet(clips, out, fmt):
+    """Hoja de revisión: un cuadro de cada escena, numerado, para revisar las imágenes."""
+    from PIL import Image, ImageDraw, ImageFont
+    tw = 384 if fmt == "largo" else 180
+    th = int(tw * FORMATS[fmt]["H"] / FORMATS[fmt]["W"])
+    cols = 6 if fmt == "largo" else 6
+    rows = (len(clips) + cols - 1) // cols
+    sheet = Image.new("RGB", (cols * tw, rows * th), (0, 0, 0))
+    font = ImageFont.truetype(str(FONTS / "DejaVuSans-Bold.ttf"), 22)
+    for i, c in enumerate(clips):
+        fr = Path(c).with_suffix(".jpg")
+        run(["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{duration(c) / 2:.2f}", "-i", str(c),
+             "-frames:v", "1", "-vf", f"scale={tw}:{th}", str(fr)])
+        im = Image.open(fr)
+        x, y = (i % cols) * tw, (i // cols) * th
+        sheet.paste(im, (x, y))
+        d = ImageDraw.Draw(sheet)
+        d.text((x + 6, y + 4), str(i + 1), font=font, fill=(255, 220, 60), stroke_width=3,
+               stroke_fill=(0, 0, 0))
+    sheet.save(out, "JPEG", quality=80)
+    return out
