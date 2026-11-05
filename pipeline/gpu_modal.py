@@ -35,6 +35,22 @@ NEG = ("blurry, low quality, distorted face, deformed hands, extra fingers, extr
        "watermark, logo, subtitles, static image, frozen, jitter, morphing, ugly, cartoonish mess")
 
 
+@app.function(image=imagen, volumes={"/modelos": modelos}, timeout=3600, cpu=4, memory=8192)
+def descargar():
+    """Baja los pesos al volumen en una máquina sin GPU (más barata)."""
+    from huggingface_hub import snapshot_download
+    for repo in (FLUX, WAN):
+        t = time.time()
+        try:
+            snapshot_download(repo, allow_patterns=["*.json", "*.safetensors", "*.txt", "*.model",
+                                                    "tokenizer*/*", "*.py"],
+                              ignore_patterns=["flux1-schnell.safetensors", "ae.safetensors"])
+            print(f"{repo} listo en {time.time() - t:.0f}s")
+        except Exception as e:  # noqa: BLE001
+            print(f"no se pudo bajar {repo}:", str(e)[:300])
+    modelos.commit()
+
+
 @app.cls(gpu="A100-80GB", image=imagen, volumes={"/modelos": modelos}, timeout=3 * 3600,
          scaledown_window=60, max_containers=1)
 class Animador:
@@ -111,7 +127,7 @@ ESTILO_CANAL = ("epic biblical film, cinematic 3D animation, painterly textures,
 
 
 @app.local_entrypoint()
-def prueba(salida: str = "out/prueba", pasos: int = 40):
+def prueba(salida: str = "out/prueba", pasos: int = 30):
     trabajos = [
         {"id": "1-david-honda", "semilla": 7,
          "escena": "a young shepherd boy David, curly brown hair, simple beige tunic, holding a leather sling, "
@@ -131,6 +147,7 @@ def prueba(salida: str = "out/prueba", pasos: int = 40):
     ]
     for t in trabajos:
         t.update({"estilo": ESTILO_CANAL, "pasos": pasos})
+    descargar.remote()
     resultados = list(Animador().clip.map(trabajos))
     _guardar(resultados, salida)
 
@@ -138,5 +155,6 @@ def prueba(salida: str = "out/prueba", pasos: int = 40):
 @app.local_entrypoint()
 def lote(trabajos: str, salida: str = "out/clips"):
     jobs = json.loads(Path(trabajos).read_text())
+    descargar.remote()
     resultados = list(Animador().clip.map(jobs))
     _guardar(resultados, salida)

@@ -5,7 +5,7 @@ on:
     inputs:
       pasos:
         description: "Pasos de difusión de Wan (más = mejor y más lento)"
-        default: "40"
+        default: "30"
 
 concurrency:
   group: gpu
@@ -35,7 +35,7 @@ jobs:
         env:
           MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
           MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
-        run: modal run pipeline/gpu_modal.py::prueba --salida out/prueba --pasos ${{ inputs.pasos || '40' }}
+        run: modal run pipeline/gpu_modal.py::prueba --salida out/prueba --pasos ${{ inputs.pasos || '30' }}
       - name: Armar, subir y dejar hoja de revisión
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
