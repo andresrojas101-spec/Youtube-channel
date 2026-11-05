@@ -1,6 +1,6 @@
 {
   "id": "001-david-y-goliat",
-  "status": "listo",
+  "status": "subido",
   "historia": "David y Goliat",
   "referencias": [
     "1 Samuel 17:1-58",
@@ -588,6 +588,127 @@
       null,
       null,
       null
+    ]
+  },
+  "resultado": {
+    "producido_en": "2026-11-05T21:46:57+00:00",
+    "largo": {
+      "duracion_s": 557,
+      "archivo": "largo.mp4",
+      "imagenes": [
+        "Ilustración generada",
+        "File:071A.David Slays Goliath.jpg",
+        "File:072.Saul Attempts to Kill David.jpg",
+        "File:Valley of Elah.jpg",
+        "Ilustración generada",
+        "File:Tissot Drawing 264 The defiance of Goliath 1 Samuel 17 10 for Brunoff 252 Le défi de Goliath.jpg",
+        "Ilustración generada",
+        "File:Tissot Drawing 264 The defiance of Goliath 1 Samuel 17 10 for Brunoff 252 Le défi de Goliath.jpg",
+        "Ilustración generada",
+        "File:061.Samson Destroys the Philistines with an Ass' Jawbone.jpg",
+        "Ilustración generada",
+        "Ilustración generada",
+        "Ilustración generada",
+        "File:Gustave Doré - The Holy Bible - Plate I, The Deluge.jpg",
+        "Ilustración generada",
+        "Ilustración generada",
+        "File:Dore jonah.jpg",
+        "Ilustración generada",
+        "Ilustración generada",
+        "File:Gustave Doré - The Holy Bible - Plate I, The Deluge.jpg",
+        "File:Gustave Doré - The Holy Bible - Plate I, The Deluge.jpg",
+        "File:072.Saul Attempts to Kill David.jpg",
+        "File:072.Saul Attempts to Kill David.jpg",
+        "Ilustración generada",
+        "File:Dore jonah.jpg",
+        "Ilustración generada",
+        "Ilustración generada",
+        "File:Gustave Doré by Nadar - Getty Museum.jpg",
+        "File:Gustave Doré by Nadar - Getty Museum.jpg",
+        "Ilustración generada",
+        "File:071A.David Slays Goliath.jpg",
+        "File:Tissot Drawing 264 The defiance of Goliath 1 Samuel 17 10 for Brunoff 252 Le défi de Goliath.jpg",
+        "File:Tissot Drawing 267 David slings the stone 1 Samuel 17 49 for Brunoff 255 David lance sa fronde.jpg",
+        "Ilustración generada",
+        "File:Gustave Doré - The Holy Bible - Plate CXLI, The Judas Kiss (unadjusted).png",
+        "File:Tissot Drawing 267 David slings the stone 1 Samuel 17 49 for Brunoff 255 David lance sa fronde.jpg",
+        "Ilustración generada",
+        "File:Dore jonah.jpg",
+        "File:Dore Bible Sermon on the Mount.jpg",
+        "Ilustración generada",
+        "Ilustración generada",
+        "Ilustración generada",
+        "Ilustración generada",
+        "Ilustración generada",
+        "Ilustración generada"
+      ],
+      "youtube": {
+        "id": "swcIGTS9IXo",
+        "privacidad_pedida": "unlisted",
+        "privacidad_resultante": "unlisted",
+        "publicar_en": null,
+        "url": "https://youtu.be/swcIGTS9IXo",
+        "miniatura": false
+      }
+    },
+    "shorts": [
+      {
+        "duracion_s": 37,
+        "archivo": "short1.mp4",
+        "imagenes": [
+          "File:Tissot Drawing 267 David slings the stone 1 Samuel 17 49 for Brunoff 255 David lance sa fronde.jpg",
+          "Ilustración generada",
+          "Ilustración generada",
+          "Ilustración generada",
+          "Ilustración generada",
+          "File:071A.David Slays Goliath.jpg"
+        ],
+        "youtube": {
+          "id": "NE3h_iJA8Bs",
+          "privacidad_pedida": "unlisted",
+          "privacidad_resultante": "unlisted",
+          "publicar_en": null,
+          "url": "https://youtu.be/NE3h_iJA8Bs"
+        }
+      },
+      {
+        "duracion_s": 30,
+        "archivo": "short2.mp4",
+        "imagenes": [
+          "File:Tissot Drawing 264 The defiance of Goliath 1 Samuel 17 10 for Brunoff 252 Le défi de Goliath.jpg",
+          "Ilustración generada",
+          "Ilustración generada",
+          "Ilustración generada",
+          "Ilustración generada",
+          "File:071A.David Slays Goliath.jpg"
+        ],
+        "youtube": {
+          "id": "KjS4U9nWNOc",
+          "privacidad_pedida": "unlisted",
+          "privacidad_resultante": "unlisted",
+          "publicar_en": null,
+          "url": "https://youtu.be/KjS4U9nWNOc"
+        }
+      },
+      {
+        "duracion_s": 30,
+        "archivo": "short3.mp4",
+        "imagenes": [
+          "File:Tissot Drawing 264 The defiance of Goliath 1 Samuel 17 10 for Brunoff 252 Le défi de Goliath.jpg",
+          "Ilustración generada",
+          "File:061.Samson Destroys the Philistines with an Ass' Jawbone.jpg",
+          "File:Tissot Drawing 264 The defiance of Goliath 1 Samuel 17 10 for Brunoff 252 Le défi de Goliath.jpg",
+          "Ilustración generada",
+          "File:071A.David Slays Goliath.jpg"
+        ],
+        "youtube": {
+          "id": "mCMJfKpR1Bg",
+          "privacidad_pedida": "unlisted",
+          "privacidad_resultante": "unlisted",
+          "publicar_en": null,
+          "url": "https://youtu.be/mCMJfKpR1Bg"
+        }
+      }
     ]
   }
 }
