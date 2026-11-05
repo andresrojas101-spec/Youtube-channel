@@ -1,0 +1,10 @@
+{
+  "nombre": "Biblia Channel",
+  "modo": "piloto",
+  "voz": {"modelo": "es_ES-davefx-medium", "velocidad": 1.08, "silencio": 0.35},
+  "musica": {"archivo": "assets/music/pad.mp3", "volumen_db": -22},
+  "categoria": "27",
+  "idioma": "es",
+  "zona_horaria": "America/Bogota",
+  "divulgar_ia_siempre": false
+}
