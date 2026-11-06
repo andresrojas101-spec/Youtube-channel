@@ -10,6 +10,7 @@ Uso desde GitHub Actions:
 """
 import io
 import json
+import os
 import time
 from pathlib import Path
 
@@ -51,28 +52,39 @@ def descargar():
     modelos.commit()
 
 
-@app.cls(gpu="A100-80GB", image=imagen, volumes={"/modelos": modelos}, timeout=3 * 3600,
-         scaledown_window=60, max_containers=1)
+# GPU: "L4" funciona sin tarjeta (crédito de USD 1); "A100-80GB" requiere método de pago en Modal.
+GPU = os.environ.get("BIBLIA_GPU", "L4")
+GRANDE = GPU.startswith(("A100", "H100", "L40S"))
+
+
+@app.cls(gpu=GPU, image=imagen, volumes={"/modelos": modelos}, timeout=3 * 3600,
+         scaledown_window=60, max_containers=1, memory=32768)
 class Animador:
     @modal.enter()
     def cargar(self):
         import torch
-        from diffusers import AutoencoderKLWan, FluxPipeline, WanImageToVideoPipeline
+        from diffusers import AutoencoderKLWan, WanImageToVideoPipeline, WanPipeline
 
         t = time.time()
         self.flux = None
-        try:
-            self.flux = FluxPipeline.from_pretrained(FLUX, torch_dtype=torch.bfloat16).to("cuda")
-        except Exception as e:  # noqa: BLE001 - si FLUX no carga, Wan genera desde texto
-            print("FLUX no disponible:", str(e)[:300])
         vae = AutoencoderKLWan.from_pretrained(WAN, subfolder="vae", torch_dtype=torch.float32)
-        self.wan = WanImageToVideoPipeline.from_pretrained(
-            WAN, vae=vae, torch_dtype=torch.bfloat16).to("cuda")
+        if GRANDE:
+            from diffusers import FluxPipeline
+            try:
+                self.flux = FluxPipeline.from_pretrained(FLUX, torch_dtype=torch.bfloat16).to("cuda")
+            except Exception as e:  # noqa: BLE001 - si FLUX no carga, Wan genera desde texto
+                print("FLUX no disponible:", str(e)[:300])
+            self.wan = WanImageToVideoPipeline.from_pretrained(
+                WAN, vae=vae, torch_dtype=torch.bfloat16).to("cuda")
         if self.flux is None:
-            from diffusers import WanPipeline
-            self.wan_t2v = WanPipeline.from_pretrained(WAN, vae=vae, torch_dtype=torch.bfloat16).to("cuda")
+            # GPU pequeña: solo Wan (texto a video), moviendo partes del modelo a la CPU cuando no se usan
+            self.wan_t2v = WanPipeline.from_pretrained(WAN, vae=vae, torch_dtype=torch.bfloat16)
+            if GRANDE:
+                self.wan_t2v.to("cuda")
+            else:
+                self.wan_t2v.enable_model_cpu_offload()
         modelos.commit()
-        print(f"modelos cargados en {time.time() - t:.0f}s")
+        print(f"[{GPU}] modelos cargados en {time.time() - t:.0f}s")
 
     @modal.method()
     def clip(self, job: dict) -> dict:
@@ -127,7 +139,7 @@ ESTILO_CANAL = ("epic biblical film, cinematic 3D animation, painterly textures,
 
 
 @app.local_entrypoint()
-def prueba(salida: str = "out/prueba", pasos: int = 30):
+def prueba(salida: str = "out/prueba", pasos: int = 25):
     trabajos = [
         {"id": "1-david-honda", "semilla": 7,
          "escena": "a young shepherd boy David, curly brown hair, simple beige tunic, holding a leather sling, "
@@ -147,6 +159,8 @@ def prueba(salida: str = "out/prueba", pasos: int = 30):
     ]
     for t in trabajos:
         t.update({"estilo": ESTILO_CANAL, "pasos": pasos})
+        if not GRANDE:  # caber en el crédito gratis: menos resolución y ~3,4 s por clip
+            t.update({"ancho": 544, "alto": 960, "cuadros": 81})
     descargar.remote()
     resultados = list(Animador().clip.map(trabajos))
     _guardar(resultados, salida)
