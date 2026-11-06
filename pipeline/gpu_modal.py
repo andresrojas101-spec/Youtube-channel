@@ -22,10 +22,10 @@ imagen = (
     .apt_install("ffmpeg")
     .pip_install(
         "torch==2.6.0", "torchvision==0.21.0",
-        "diffusers==0.42.1", "transformers>=4.51,<5", "accelerate>=1.6", "sentencepiece",
-        "ftfy", "protobuf", "imageio[ffmpeg]", "hf_transfer", "pillow",
+        "diffusers==0.42.1", "transformers>=5,<6", "accelerate>=1.6", "sentencepiece",
+        "ftfy", "protobuf", "imageio[ffmpeg]", "hf_xet", "pillow",
     )
-    .env({"HF_HUB_ENABLE_HF_TRANSFER": "1", "HF_HOME": "/modelos/hf"})
+    .env({"HF_HOME": "/modelos/hf"})
 )
 modelos = modal.Volume.from_name("biblia-modelos", create_if_missing=True)
 
