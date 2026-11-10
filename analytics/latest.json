@@ -1,8 +1,8 @@
 {
-  "generado": "2026-11-08T17:01:04+00:00",
+  "generado": "2026-11-10T18:39:40+00:00",
   "periodo": [
-    "2026-10-11",
-    "2026-11-08"
+    "2026-10-13",
+    "2026-11-10"
   ],
   "canal": {
     "id": "UC0Yq4-kGSjmC5bqS_s_z_5A",
@@ -29,18 +29,6 @@
     }
   ],
   "diario": [
-    {
-      "day": "2026-10-11",
-      "views": 0,
-      "estimatedMinutesWatched": 0,
-      "subscribersGained": 0
-    },
-    {
-      "day": "2026-10-12",
-      "views": 0,
-      "estimatedMinutesWatched": 0,
-      "subscribersGained": 0
-    },
     {
       "day": "2026-10-13",
       "views": 0,
@@ -182,6 +170,18 @@
     {
       "day": "2026-11-05",
       "views": 1,
+      "estimatedMinutesWatched": 0,
+      "subscribersGained": 0
+    },
+    {
+      "day": "2026-11-06",
+      "views": 0,
+      "estimatedMinutesWatched": 0,
+      "subscribersGained": 0
+    },
+    {
+      "day": "2026-11-07",
+      "views": 0,
       "estimatedMinutesWatched": 0,
       "subscribersGained": 0
     }
