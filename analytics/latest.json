@@ -1,8 +1,8 @@
 {
-  "generado": "2026-11-26T20:09:43+00:00",
+  "generado": "2026-11-27T19:55:52+00:00",
   "periodo": [
-    "2026-10-29",
-    "2026-11-26"
+    "2026-10-30",
+    "2026-11-27"
   ],
   "canal": {
     "id": "UC0Yq4-kGSjmC5bqS_s_z_5A",
@@ -29,12 +29,6 @@
     }
   ],
   "diario": [
-    {
-      "day": "2026-10-29",
-      "views": 0,
-      "estimatedMinutesWatched": 0,
-      "subscribersGained": 0
-    },
     {
       "day": "2026-10-30",
       "views": 0,
